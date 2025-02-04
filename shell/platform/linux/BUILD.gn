@@ -95,8 +95,6 @@ source_set("flutter_linux_sources") {
              "key_mapping.h",
            ]
 
-  configs += [ "//flutter/shell/platform/linux/config:gtk" ]
-
   sources = [
     "fl_accessible_node.cc",
     "fl_accessible_text_field.cc",
@@ -171,10 +169,6 @@ source_set("flutter_linux_sources") {
 }
 
 source_set("flutter_linux") {
-  configs += [
-    "//flutter/shell/platform/linux/config:gtk",
-    "//flutter/shell/platform/linux/config:epoxy",
-  ]
 
   defines = [ "FLUTTER_ENGINE_NO_PROTOTYPES" ]
 
@@ -254,11 +248,6 @@ executable("flutter_linux_unittests") {
   ]
 
   public_configs = [ "//flutter:config" ]
-
-  configs += [
-    "//flutter/shell/platform/linux/config:gtk",
-    "//flutter/shell/platform/linux/config:epoxy",
-  ]
 
   defines = [
     "FLUTTER_ENGINE_NO_PROTOTYPES",
