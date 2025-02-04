@@ -10,7 +10,6 @@ import("//flutter/testing/testing.gni")
 
 group("linux") {
   deps = [
-    ":flutter_linux_gtk",
     ":publish_headers_linux",
   ]
   if (build_glfw_shell) {
