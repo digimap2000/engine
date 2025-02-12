@@ -88,7 +88,7 @@ vars = {
   'download_esbuild': True,
 
   # Checkout Android dependencies only on platforms where we build for Android targets.
-  'download_android_deps': 'host_os == "mac" or (host_os == "linux" and host_cpu == "x64")',
+  'download_android_deps': False,
 
   # Checkout Java dependencies only on platforms that do not have java installed on path.
   'download_jdk': True,
@@ -108,7 +108,7 @@ vars = {
   # logic or condition may not work if this flag is False.
   # TODO(zijiehe): Make this condition more strict to only download fuchsia
   # dependencies when necessary: b/40935282
-  'download_fuchsia_deps': 'host_os == "linux"',
+  'download_fuchsia_deps': False,
   # Downloads the fuchsia SDK as listed in fuchsia_sdk_path var. This variable
   # is currently only used for the Fuchsia LSC process and is not intended for
   # local development.
@@ -790,7 +790,7 @@ deps = {
         'version': 'version:17'
        }
      ],
-     # Always download the JDK since java is required for running the formatter.
+     'condition': 'download_android_deps',
      'dep_type': 'cipd',
    },
 
@@ -849,7 +849,7 @@ deps = {
         'version': Var('clang_version'),
       }
     ],
-    'condition': 'host_os == "linux" or host_os == "mac"',
+    'condition': 'download_fuchsia_deps',
     'dep_type': 'cipd',
   },
 
@@ -860,7 +860,7 @@ deps = {
         'version': Var('clang_version'),
       }
     ],
-    'condition': 'host_os == "linux" and host_cpu == "arm64"',
+    'condition': 'download_fuchsia_deps',
     'dep_type': 'cipd',
   },
 
