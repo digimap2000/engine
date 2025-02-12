@@ -6,19 +6,16 @@ import("//flutter/common/config.gni")
 import("//flutter/testing/testing.gni")
 
 declare_args() {
-  impeller_debug =
-      flutter_runtime_mode == "debug" || flutter_runtime_mode == "profile"
+  impeller_debug = false
 
   # Whether the Metal backend is enabled.
-  impeller_enable_metal = (is_mac || is_ios) && target_os != "fuchsia"
+  impeller_enable_metal = false
 
   # Whether the OpenGLES backend is enabled.
-  impeller_enable_opengles = (is_linux || is_win || is_android || is_mac ||
-                              enable_unittests) && target_os != "fuchsia"
+  impeller_enable_opengles = true
 
   # Whether the Vulkan backend is enabled.
-  impeller_enable_vulkan = (is_linux || is_win || is_android || is_mac ||
-                            enable_unittests) && target_os != "fuchsia"
+  impeller_enable_vulkan = false
 }
 
 # Arguments that are combinations of other arguments by default but which can
